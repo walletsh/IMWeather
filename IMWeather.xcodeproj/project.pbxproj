@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		E437D48C8FFAE9B42FC4AA49 /* Pods_IMWeather.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83AAE4B5DC8FD03B77E1D54E /* Pods_IMWeather.framework */; };
+		EE0F0A301EA4A48B00DB7768 /* Citys.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE0F0A2F1EA4A48B00DB7768 /* Citys.plist */; };
+		EE0F0A321EA4A50B00DB7768 /* IMCitysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0F0A311EA4A50B00DB7768 /* IMCitysViewController.swift */; };
+		EE0F0A341EA4A55F00DB7768 /* IMCityGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0F0A331EA4A55F00DB7768 /* IMCityGroup.swift */; };
 		EEABEA2C1EA0744A00043BEC /* ele_sunnyBird1.png in Resources */ = {isa = PBXBuildFile; fileRef = EEABE9D31EA0744A00043BEC /* ele_sunnyBird1.png */; };
 		EEABEA2D1EA0744A00043BEC /* ele_sunnyBird2.png in Resources */ = {isa = PBXBuildFile; fileRef = EEABE9D41EA0744A00043BEC /* ele_sunnyBird2.png */; };
 		EEABEA2E1EA0744A00043BEC /* ele_sunnyBird3.png in Resources */ = {isa = PBXBuildFile; fileRef = EEABE9D51EA0744A00043BEC /* ele_sunnyBird3.png */; };
@@ -112,6 +115,9 @@
 		1F65EA9D532CB67B85E35CBD /* Pods-IMWeather.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IMWeather.release.xcconfig"; path = "Pods/Target Support Files/Pods-IMWeather/Pods-IMWeather.release.xcconfig"; sourceTree = "<group>"; };
 		83AAE4B5DC8FD03B77E1D54E /* Pods_IMWeather.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IMWeather.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2A8011E84948B79A77E5722 /* Pods-IMWeather.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IMWeather.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IMWeather/Pods-IMWeather.debug.xcconfig"; sourceTree = "<group>"; };
+		EE0F0A2F1EA4A48B00DB7768 /* Citys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Citys.plist; sourceTree = "<group>"; };
+		EE0F0A311EA4A50B00DB7768 /* IMCitysViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMCitysViewController.swift; sourceTree = "<group>"; };
+		EE0F0A331EA4A55F00DB7768 /* IMCityGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMCityGroup.swift; sourceTree = "<group>"; };
 		EEABE9D31EA0744A00043BEC /* ele_sunnyBird1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ele_sunnyBird1.png; sourceTree = "<group>"; };
 		EEABE9D41EA0744A00043BEC /* ele_sunnyBird2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ele_sunnyBird2.png; sourceTree = "<group>"; };
 		EEABE9D51EA0744A00043BEC /* ele_sunnyBird3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ele_sunnyBird3.png; sourceTree = "<group>"; };
@@ -374,10 +380,13 @@
 				EEABEA841EA0796100043BEC /* IMWeatherView.swift */,
 				EEABEA881EA07BE900043BEC /* IMWeatherInfoView.swift */,
 				EEABEA8E1EA0C76600043BEC /* IMWeatherModel.swift */,
+				EE0F0A311EA4A50B00DB7768 /* IMCitysViewController.swift */,
+				EE0F0A331EA4A55F00DB7768 /* IMCityGroup.swift */,
 				EEE1F1A51EA06F5D008FE033 /* Main.storyboard */,
 				EEE1F1A81EA06F5D008FE033 /* Assets.xcassets */,
 				EEE1F1AA1EA06F5D008FE033 /* LaunchScreen.storyboard */,
 				EEE1F1AD1EA06F5D008FE033 /* Info.plist */,
+				EE0F0A2F1EA4A48B00DB7768 /* Citys.plist */,
 			);
 			path = IMWeather;
 			sourceTree = "<group>";
@@ -543,6 +552,7 @@
 				EEABEA381EA0744A00043BEC /* ele_sunnyBirdInvertedImage5.png in Resources */,
 				EEABEA7C1EA0744A00043BEC /* 38.png in Resources */,
 				EEABEA371EA0744A00043BEC /* ele_sunnyBirdInvertedImage4.png in Resources */,
+				EE0F0A301EA4A48B00DB7768 /* Citys.plist in Resources */,
 				EEABEA651EA0744A00043BEC /* 17.png in Resources */,
 				EEABEA791EA0744A00043BEC /* 35.png in Resources */,
 			);
@@ -610,6 +620,8 @@
 				EEABEA851EA0796100043BEC /* IMWeatherView.swift in Sources */,
 				EEABEA8F1EA0C76600043BEC /* IMWeatherModel.swift in Sources */,
 				EEABEA891EA07BE900043BEC /* IMWeatherInfoView.swift in Sources */,
+				EE0F0A321EA4A50B00DB7768 /* IMCitysViewController.swift in Sources */,
+				EE0F0A341EA4A55F00DB7768 /* IMCityGroup.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,6 +14,8 @@ let kScreenH = UIScreen.main.bounds.size.height
 
 class IMWeatherView: UIView {
 
+    var changeCityBlock: ((_ sender: UIButton) -> Void)?
+    
     var weatherModel: IMWeatherModel? {
         didSet{
             let location = weatherModel?.location
@@ -131,12 +133,19 @@ class IMWeatherView: UIView {
 
 extension IMWeatherView {
     @objc fileprivate func changeCity(_ sender: UIButton) {
-        print("changeCity")
+        guard let changeCityBlock = changeCityBlock else { return }
+        changeCityBlock(sender)
     }
     
     fileprivate func updateWeekWeatherInfo() {
+        guard let count = self.weatherInfos?.count else { return }
         
-        for index in 0..<self.weatherInfos!.count {
+        /// 移除所有子控件
+        _ = scrollewView.subviews.map {
+            $0.removeFromSuperview()
+        }
+        
+        for index in 0..<count {
             let infoW = kScreenW * 0.5
             let infoX = CGFloat(index) * infoW
             

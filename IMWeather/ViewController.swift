@@ -21,15 +21,6 @@ class ViewController: UIViewController, NVActivityIndicatorViewable {
 
     var weatherView: IMWeatherView!
     
-    
-    /// 提示HUB
-    fileprivate lazy var activityIndicatorView: NVActivityIndicatorView = {
-        let rect = CGRect(x: 0, y: 0, width: 80, height: 80)
-        let activityView = NVActivityIndicatorView(frame: rect, type: .ballPulse, color: .orange, padding: 0)
-        activityView.center = self.view.center
-        return activityView
-    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -69,6 +60,14 @@ extension ViewController {
     
     fileprivate func setupSubviews() {
         weatherView = IMWeatherView(frame: self.view.bounds)
+        weatherView.changeCityBlock = {
+            (sender) -> Void in
+            
+            let cityVC = IMCitysViewController()
+            cityVC.cityDelegate = self
+            self.present(UINavigationController(rootViewController: cityVC), animated: true, completion: {
+            })
+        }
         self.view.addSubview(weatherView)
     }
     
@@ -78,20 +77,7 @@ extension ViewController {
         
         IMLocationManager.manager.locationCoordBlock = {
             (latitude, longitude) ->Void in
-            print("locationCoordBlock: latitude is \(latitude) longitude is \(longitude)")
-            
-            IMLocationManager.manager.fetchAddressInfo(latitude: latitude, longitude: longitude) { (place, error) in
-                guard let place = place else { return }
-                print("fetchAddressInfo place is \(place) error is \(error)")
-            }
-            
-//            self.getupWeatherInfo(latitude, longitude)
             self.getupWeekWetherInfo(latitude, longitude)
-        }
-        
-        IMLocationManager.manager.fetchCoordinateInfo(address: "灵宝") { (place, error) in
-            guard let place = place else { return }
-            print("fetchCoordinateInfo place is \(place) error is \(error)")
         }
         
         IMLocationManager.manager.locationFailBlock = {
@@ -100,19 +86,8 @@ extension ViewController {
         }
     }
     
-    
-    fileprivate func getupWeatherInfo(_ latitude: CLLocationDegrees, _ longitude: CLLocationDegrees) {
-//        let parameters: [String : Any] = ["lat" : latitude, "lng" : longitude, "authkey" : authkey]
-//        Alamofire.request(url, method: .get, parameters: parameters).responseJSON { (response) in
-//        }
-    }
-    
-    
     /// 获取一周的天气数据
     fileprivate func getupWeekWetherInfo(_ latitude: CLLocationDegrees, _ longitude: CLLocationDegrees) {
-        
-//        self.view.addSubview(self.activityIndicatorView)
-//        self.activityIndicatorView.startAnimating()
         
         /// 提示HUB
         startAnimating(CGSize(width: 30, height: 30), message: "Loading...", messageFont: UIFont.systemFont(ofSize: 15), type: .ballBeat, color: .orange, padding: 0, backgroundColor: UIColor.red.withAlphaComponent(0.1), textColor: .purple)
@@ -123,18 +98,6 @@ extension ViewController {
         let weekReq = Alamofire.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: ["Content-Type":"application/json"])
 
         weekReq.responseJSON { (response) in
-            guard let req = response.request,
-                let res = response.response,
-                let data = response.data,
-                let jsonResult = response.result.value else {return}
-            
-            print("response.request is \(req)")  // original URL request
-            print("response.response is \(res)") // HTTP URL response
-            print("response.data is \(data)")     // server data
-            print("response.result is \(response.result)")   // result of response serialization
-            print("jsonResult: \(jsonResult)")
-            
-//            self.activityIndicatorView.stopAnimating()
             
             self.stopAnimating()
             
@@ -153,6 +116,15 @@ extension ViewController {
                 break
             }
         }
+    }
+}
+
+extension ViewController: IMCitysViewControllerDelegate{
+    func changeCityName(city: String) {
+        IMLocationManager.manager.fetchCoordinateInfo(address: city) { (place, error) in
+            guard let place = place else { return }
+            self.getupWeekWetherInfo((place.location?.coordinate.latitude)!, (place.location?.coordinate.longitude)!)
+            }
     }
 }
 
