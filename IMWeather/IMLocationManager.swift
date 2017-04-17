@@ -109,9 +109,13 @@ extension IMLocationManager: CLLocationManagerDelegate {
                 if UIApplication.shared.canOpenURL(url) {
 //                    // UIApplicationOpenURLOptionUniversalLinksOnly:如果这个要打开的URL有效，并且在应用中配置它布尔值为true（YES）时才可以打开，否则打不开。
 //                    let options = [UIApplicationOpenURLOptionUniversalLinksOnly : true];
-                    UIApplication.shared.open(url, options: [:], completionHandler: { (success) in
-                        print("success is \(success)")
-                    })
+                    if #available(iOS 10.0, *) {
+                        UIApplication.shared.open(url, options: [:], completionHandler: { (success) in
+                            print("success is \(success)")
+                        })
+                    } else {
+                        // Fallback on earlier versions
+                    }
                 }
             })
             break

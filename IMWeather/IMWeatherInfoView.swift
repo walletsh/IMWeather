@@ -7,15 +7,107 @@
 //
 
 import UIKit
+import SnapKit
 
 class IMWeatherInfoView: UIView {
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    var weatherInfo: IMWeatherInfo?{
+        didSet{
+            dateLabel.text = weatherInfo?.date
+            weatherIcon.image = UIImage(named:(weatherInfo?.code_day)!)
+            temperatureLabel.text = (weatherInfo?.high)! + "℃/" + (weatherInfo?.low)! + "℃"
+            windLabel.text = (weatherInfo?.wind_direction)! + " " + (weatherInfo?.wind_scale)! + "级"
+        }
     }
-    */
+    
+    
+    fileprivate lazy var dateLabel: UILabel = {
+        let timeLabel = UILabel()
+        timeLabel.font = UIFont.boldSystemFont(ofSize: 15)
+        timeLabel.textColor = UIColor.white
+        timeLabel.textAlignment = .center
+        return timeLabel
+    }()
+    
+    fileprivate lazy var weatherIcon: UIImageView = {
+        let weatherImage = UIImageView()
+        weatherImage.contentMode = .scaleAspectFit
+        return weatherImage
+    }()
+    
+    fileprivate lazy var temperatureLabel: UILabel = {
+        let tempLabel = UILabel()
+        tempLabel.font = UIFont.boldSystemFont(ofSize: 15)
+        tempLabel.textColor = UIColor.white
+        tempLabel.textAlignment = .center
+        return tempLabel
+    }()
+    
+    fileprivate lazy var windLabel: UILabel = {
+        let windLevelLabel = UILabel()
+        windLevelLabel.font = UIFont.boldSystemFont(ofSize: 15)
+        windLevelLabel.textColor = UIColor.white
+        windLevelLabel.textAlignment = .center
+        return windLevelLabel
+    }()
 
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        setupUI()
+    }
+    
+//    convenience init() {
+//        self.init(frame: CGRect.zero)
+//    }
+    
+//    override var frame: CGRect{
+//        didSet{
+//            var newFrame = frame
+//            newFrame.size.height = 180
+//            super.frame = newFrame
+//        }
+//    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    fileprivate func setupUI() {
+        
+        self.addSubview(dateLabel)
+        dateLabel.snp.makeConstraints { (make) -> Void in
+            make.height.equalTo(30)
+            make.left.equalTo(self.snp.left)
+            make.right.equalTo(self.snp.right)
+            make.top.equalTo(self.snp.top)
+        }
+        
+        self.addSubview(windLabel)
+        windLabel.snp.makeConstraints { (make) -> Void in
+            make.height.equalTo(30)
+            make.left.equalTo(self.snp.left)
+            make.right.equalTo(self.snp.right)
+            make.bottom.equalTo(self.snp.bottom)
+        }
+        
+        self.addSubview(temperatureLabel)
+        temperatureLabel.snp.makeConstraints { (make) -> Void in
+            make.height.equalTo(30)
+            make.left.equalTo(self.snp.left)
+            make.right.equalTo(self.snp.right)
+            make.bottom.equalTo(windLabel.snp.top)
+        }
+        
+        self.addSubview(weatherIcon)
+        weatherIcon.snp.makeConstraints { (make) -> Void in
+            make.left.equalTo(self.snp.left)
+            make.right.equalTo(self.snp.right)
+            make.bottom.equalTo(temperatureLabel.snp.top)
+            make.top.equalTo(dateLabel.snp.bottom)
+        }
+    }
 }
+
+
+
