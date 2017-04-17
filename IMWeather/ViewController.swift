@@ -10,21 +10,31 @@ import UIKit
 import CoreLocation
 import Alamofire
 import SwiftyJSON
-
+import NVActivityIndicatorView
 
 fileprivate let url = "https://api.thinkpage.cn/v3/weather/daily.json?"
 fileprivate let authkey = "osoydf7ademn8ybv"
 fileprivate let language = "zh-Hans"
 
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, NVActivityIndicatorViewable {
 
     var weatherView: IMWeatherView!
+    
+    
+    /// 提示HUB
+    fileprivate lazy var activityIndicatorView: NVActivityIndicatorView = {
+        let rect = CGRect(x: 0, y: 0, width: 80, height: 80)
+        let activityView = NVActivityIndicatorView(frame: rect, type: .ballPulse, color: .orange, padding: 0)
+        activityView.center = self.view.center
+        return activityView
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupStatusBar()
+        
         setupSubviews()
         
         startLocation()
@@ -55,7 +65,6 @@ extension ViewController {
         if statusBarView.responds(to: #selector(getter: UIView.backgroundColor)) {
             statusBarView.backgroundColor = UIColor.clear
         }
-        
     }
     
     fileprivate func setupSubviews() {
@@ -77,7 +86,6 @@ extension ViewController {
             }
             
 //            self.getupWeatherInfo(latitude, longitude)
-            
             self.getupWeekWetherInfo(latitude, longitude)
         }
         
@@ -103,6 +111,13 @@ extension ViewController {
     /// 获取一周的天气数据
     fileprivate func getupWeekWetherInfo(_ latitude: CLLocationDegrees, _ longitude: CLLocationDegrees) {
         
+//        self.view.addSubview(self.activityIndicatorView)
+//        self.activityIndicatorView.startAnimating()
+        
+        /// 提示HUB
+        startAnimating(CGSize(width: 30, height: 30), message: "Loading...", messageFont: UIFont.systemFont(ofSize: 15), type: .ballBeat, color: .orange, padding: 0, backgroundColor: UIColor.red.withAlphaComponent(0.1), textColor: .purple)
+        
+        
         let parameters: [String : Any] = ["key" : authkey, "location" : String(latitude) + ":" + String(longitude), "language" : language, "unit": "c", "start": 0, "days": 7]
         
         let weekReq = Alamofire.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: ["Content-Type":"application/json"])
@@ -119,6 +134,10 @@ extension ViewController {
             print("response.result is \(response.result)")   // result of response serialization
             print("jsonResult: \(jsonResult)")
             
+//            self.activityIndicatorView.stopAnimating()
+            
+            self.stopAnimating()
+            
             switch response.result{
             case .success(let value):
                 let jsonValue = JSON(value)
@@ -130,6 +149,7 @@ extension ViewController {
                 break
             case .failure(let error):
                 print("error is: \(error)")
+
                 break
             }
         }

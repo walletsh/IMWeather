@@ -22,20 +22,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_normal.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="Xfz-UF-ud0">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="Xfz-UF-ud0" secondAttribute="trailing" id="5fd-P3-K1e"/>
-                            <constraint firstItem="Xfz-UF-ud0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="l25-aw-XtM"/>
-                            <constraint firstItem="Xfz-UF-ud0" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="r7C-fc-y2m"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Xfz-UF-ud0" secondAttribute="bottom" id="rL1-aN-SGm"/>
+                            <constraint firstItem="Xfz-UF-ud0" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="EfT-HL-nA8"/>
+                            <constraint firstAttribute="trailing" secondItem="Xfz-UF-ud0" secondAttribute="trailing" id="Fxa-U7-2XB"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Xfz-UF-ud0" secondAttribute="bottom" id="XYS-a4-8cU"/>
+                            <constraint firstItem="Xfz-UF-ud0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="hwr-Ga-V4b"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="140" y="114.69265367316342"/>
         </scene>
     </scenes>
     <resources>

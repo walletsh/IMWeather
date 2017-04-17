@@ -28,6 +28,7 @@ class IMWeatherView: UIView {
         didSet{
             weatherIcon.image = UIImage(named:(weatherInfo?.code_day)!)
             temperatureLabel.text = (weatherInfo?.high)! + "℃/" + (weatherInfo?.low)! + "℃"
+            weatherLabel.text = weatherInfo?.text_day
         }
     }
     
@@ -50,9 +51,17 @@ class IMWeatherView: UIView {
         return weatherImage
     }()
     
+    fileprivate lazy var weatherLabel: UILabel = {
+        let weather = UILabel()
+        weather.font = UIFont.boldSystemFont(ofSize: 30)
+        weather.textColor = UIColor.white
+        weather.textAlignment = .center
+        return weather
+    }()
+    
     fileprivate lazy var temperatureLabel: UILabel = {
         let tempLabel = UILabel()
-        tempLabel.font = UIFont.boldSystemFont(ofSize: 30)
+        tempLabel.font = UIFont.boldSystemFont(ofSize: 28)
         tempLabel.textColor = UIColor.white
         tempLabel.textAlignment = .center
         return tempLabel
@@ -90,23 +99,31 @@ class IMWeatherView: UIView {
         self.addSubview(weatherIcon)
         weatherIcon.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(cityButton.snp.bottom).offset(20)
-            make.width.height.equalTo(150)
+            make.width.height.equalTo(130)
             make.centerX.equalTo(self.snp.centerX)
+        }
+        
+        self.addSubview(weatherLabel)
+        weatherLabel.snp.makeConstraints { (make) -> Void in
+            make.right.equalTo(self.snp.right)
+            make.left.equalTo(self.snp.left)
+            make.height.equalTo(30)
+            make.top.equalTo(weatherIcon.snp.bottom)
         }
 
         self.addSubview(temperatureLabel)
         temperatureLabel.snp.makeConstraints { (make) -> Void in
             make.right.equalTo(self.snp.right)
             make.left.equalTo(self.snp.left)
-            make.height.equalTo(30)
-            make.top.equalTo(weatherIcon.snp.bottom).offset(20)
+            make.height.equalTo(28)
+            make.top.equalTo(weatherLabel.snp.bottom).offset(10)
         }
         
         self.addSubview(scrollewView)
         scrollewView.snp.makeConstraints { (make) -> Void in
             make.right.equalTo(self.snp.right)
             make.left.equalTo(self.snp.left)
-            make.height.equalTo(180)
+            make.height.equalTo(160)
             make.top.equalTo(temperatureLabel.snp.bottom).offset(30)
         }
     }
@@ -114,7 +131,7 @@ class IMWeatherView: UIView {
 
 extension IMWeatherView {
     @objc fileprivate func changeCity(_ sender: UIButton) {
-        
+        print("changeCity")
     }
     
     fileprivate func updateWeekWeatherInfo() {

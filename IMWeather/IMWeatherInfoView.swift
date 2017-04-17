@@ -17,6 +17,7 @@ class IMWeatherInfoView: UIView {
             weatherIcon.image = UIImage(named:(weatherInfo?.code_day)!)
             temperatureLabel.text = (weatherInfo?.high)! + "℃/" + (weatherInfo?.low)! + "℃"
             windLabel.text = (weatherInfo?.wind_direction)! + " " + (weatherInfo?.wind_scale)! + "级"
+            weatherLabel.text = weatherInfo?.text_day
         }
     }
     
@@ -33,6 +34,14 @@ class IMWeatherInfoView: UIView {
         let weatherImage = UIImageView()
         weatherImage.contentMode = .scaleAspectFit
         return weatherImage
+    }()
+    
+    fileprivate lazy var weatherLabel: UILabel = {
+        let weather = UILabel()
+        weather.font = UIFont.boldSystemFont(ofSize: 15)
+        weather.textColor = UIColor.white
+        weather.textAlignment = .center
+        return weather
     }()
     
     fileprivate lazy var temperatureLabel: UILabel = {
@@ -85,7 +94,7 @@ class IMWeatherInfoView: UIView {
         
         self.addSubview(windLabel)
         windLabel.snp.makeConstraints { (make) -> Void in
-            make.height.equalTo(30)
+            make.height.equalTo(20)
             make.left.equalTo(self.snp.left)
             make.right.equalTo(self.snp.right)
             make.bottom.equalTo(self.snp.bottom)
@@ -93,17 +102,25 @@ class IMWeatherInfoView: UIView {
         
         self.addSubview(temperatureLabel)
         temperatureLabel.snp.makeConstraints { (make) -> Void in
-            make.height.equalTo(30)
+            make.height.equalTo(20)
             make.left.equalTo(self.snp.left)
             make.right.equalTo(self.snp.right)
             make.bottom.equalTo(windLabel.snp.top)
+        }
+        
+        self.addSubview(weatherLabel)
+        weatherLabel.snp.makeConstraints { (make) -> Void in
+            make.height.equalTo(20)
+            make.left.equalTo(self.snp.left)
+            make.right.equalTo(self.snp.right)
+            make.bottom.equalTo(temperatureLabel.snp.top)
         }
         
         self.addSubview(weatherIcon)
         weatherIcon.snp.makeConstraints { (make) -> Void in
             make.left.equalTo(self.snp.left)
             make.right.equalTo(self.snp.right)
-            make.bottom.equalTo(temperatureLabel.snp.top)
+            make.bottom.equalTo(weatherLabel.snp.top)
             make.top.equalTo(dateLabel.snp.bottom)
         }
     }
