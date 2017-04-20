@@ -33,6 +33,9 @@
                             <constraint firstItem="Xfz-UF-ud0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="hwr-Ga-V4b"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="backgroudView" destination="Xfz-UF-ud0" id="geP-tP-xCv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

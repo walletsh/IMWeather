@@ -16,7 +16,7 @@ import SwiftyJSON
 
 class IMCitysViewController: UITableViewController {
 
-    var cityGroups = Array<IMCityGroup>()
+    fileprivate var cityGroups = Array<IMCityGroup>()
     
     var cityDelegate: IMCitysViewControllerDelegate?
     
@@ -30,7 +30,7 @@ class IMCitysViewController: UITableViewController {
         setupDataSource()
     }
     
-    func setupDataSource() {
+    fileprivate func setupDataSource() {
         guard let plistPath = Bundle.main.path(forResource: "Citys", ofType: "plist"),
             let cityArray = NSArray(contentsOfFile: plistPath) else { return }
         

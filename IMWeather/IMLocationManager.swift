@@ -37,10 +37,10 @@ class IMLocationManager: NSObject {
         if location.responds(to: #selector(CLLocationManager.requestWhenInUseAuthorization)) {
             location.requestWhenInUseAuthorization()
         }
-//
-//        if location.responds(to: #selector(CLLocationManager.requestAlwaysAuthorization)){
-//            location.requestAlwaysAuthorization()
-//        }
+
+        if location.responds(to: #selector(CLLocationManager.requestAlwaysAuthorization)){
+            location.requestAlwaysAuthorization()
+        }
         
         return location
     }()

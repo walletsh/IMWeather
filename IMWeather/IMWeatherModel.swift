@@ -9,6 +9,8 @@
 import UIKit
 import SwiftyJSON
 
+
+/// 天气详情信息
 struct IMWeatherInfo {
     var date: String  //日期
     var text_day: String //白天天气现象文字
@@ -22,9 +24,7 @@ struct IMWeatherInfo {
     var wind_direction_degree: String //风向角度，范围0~360
     var wind_speed: String //风速，单位km/h（当unit=c时）、mph（当unit=f时）
     var wind_scale: String //风力等级
-    
-//    init() {}
-    
+        
     init(fromJson json: JSON) {
         date = json["date"].stringValue
         text_day = json["text_day"].stringValue
@@ -41,6 +41,7 @@ struct IMWeatherInfo {
     }
 }
 
+/// 天气地理信息
 struct IMLocationModel {
     var path: String
     var id: String
@@ -61,6 +62,7 @@ struct IMLocationModel {
 
 }
 
+/// 所有的天气信息
 struct IMWeatherModel {
     var last_update: String
     var location: IMLocationModel
@@ -80,3 +82,51 @@ struct IMWeatherModel {
         }
     }
 }
+
+
+
+/// 天气图标信息
+struct IMWeatherImageModel {
+    var origin: CGPoint
+    var scale: CGFloat
+    var degree: CGFloat
+    var imageName: String
+    var alpha: CGFloat
+    var size: CGSize
+    
+    init(fromJson json: JSON) {
+        scale = CGFloat(json["-scale"].floatValue)
+        degree = CGFloat(json["-degree"].floatValue)
+        imageName = json["-imageName"].stringValue
+        alpha = CGFloat(json["-alpha"].floatValue)
+        let originString = json["-origin"].stringValue
+        let sizeString = json["-size"].stringValue
+        
+        let origins = originString.components(separatedBy: ",")
+        let sizes = sizeString.components(separatedBy: ",")
+        
+        guard let originX = origins.first, let originY = origins.last,
+            let sizeWidth = sizes.first, let sizeHeight = sizes.last else {
+                origin = CGPoint.zero
+                size = CGSize.zero
+                return
+        }
+
+        origin = CGPoint(x: IMStringTool.switchStringType(originX), y: IMStringTool.switchStringType(originY))
+        size = CGSize(width: IMStringTool.switchStringType(sizeWidth), height: IMStringTool.switchStringType(sizeHeight))
+    }
+    
+}
+
+class IMStringTool: NSObject {
+    class func switchStringType(_ text: String) -> CGFloat {
+        if let double = Double(text) {
+            return CGFloat(double)
+        }else{
+            return 0
+        }
+    }
+}
+
+
+

@@ -109,6 +109,7 @@
 		EEE1F1A91EA06F5D008FE033 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EEE1F1A81EA06F5D008FE033 /* Assets.xcassets */; };
 		EEE1F1AC1EA06F5D008FE033 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEE1F1AA1EA06F5D008FE033 /* LaunchScreen.storyboard */; };
 		EEE1F1B41EA07082008FE033 /* IMLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE1F1B31EA07082008FE033 /* IMLocationManager.swift */; };
+		EEFC33291EA85A7C00D1A5A3 /* rainData.json in Resources */ = {isa = PBXBuildFile; fileRef = EEFC33281EA85A7C00D1A5A3 /* rainData.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -218,6 +219,7 @@
 		EEE1F1AB1EA06F5D008FE033 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EEE1F1AD1EA06F5D008FE033 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EEE1F1B31EA07082008FE033 /* IMLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMLocationManager.swift; sourceTree = "<group>"; };
+		EEFC33281EA85A7C00D1A5A3 /* rainData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = rainData.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -243,6 +245,7 @@
 		EEABE9D11EA0744A00043BEC /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				EEFC33281EA85A7C00D1A5A3 /* rainData.json */,
 				EEABE9D21EA0744A00043BEC /* animation */,
 				EEABE9EF1EA0744A00043BEC /* bg_fog.jpg */,
 				EEABE9F01EA0744A00043BEC /* bg_fog_day.jpg */,
@@ -472,6 +475,7 @@
 				EEABEA2F1EA0744A00043BEC /* ele_sunnyBird4.png in Resources */,
 				EEABEA7B1EA0744A00043BEC /* 37.png in Resources */,
 				EEABEA3B1EA0744A00043BEC /* ele_sunnyBirdInvertedImage8.png in Resources */,
+				EEFC33291EA85A7C00D1A5A3 /* rainData.json in Resources */,
 				EEABEA591EA0744A00043BEC /* night_rain_cloud.png in Resources */,
 				EEABEA7F1EA0744A00043BEC /* 6.png in Resources */,
 				EEABEA321EA0744A00043BEC /* ele_sunnyBird7.png in Resources */,
